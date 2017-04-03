@@ -16,6 +16,13 @@ import Foundation
  *        Based on the Raspberry Pi Python Adafruit LEDBackpack and 8x8 driver sources
  */
 public class LEDBackpack {
+    public enum GridColor: Int {
+        case off = 0
+        case red = 1
+        case green = 2
+        case orange = 3
+    }
+
     // Registers
     static private let registerDisplaySetup: UInt8 = 0x80
     static private let registerSystemSetup: UInt8 = 0x20
@@ -113,7 +120,11 @@ public class LEDBackpack {
         }
     }
 
-    func setPixel(x: UInt16, y: Int, color: Int = 1) {
+    public func color(_ gridColor: GridColor) -> Int {
+        return gridColor.rawValue
+    }
+
+    func setPixel(x: UInt16, y: Int, color: GridColor) {
         guard x < 8, y < self.gridRows else { return }
 
         var buffer = getBuffer()
@@ -122,13 +133,13 @@ public class LEDBackpack {
         let u1 = UInt16(1)
         
         switch color {
-        case 1:
+        case .red:
             value = (buffer[y] | (u1 << x)) & ~(u1 << (x+u8))
-        case 2:
+        case .green:
             value = (buffer[y] | u1 << (x+u8)) & ~(u1 << x)
-        case 3:
+        case .orange:
             value = buffer[y] | (u1 << (x+u8)) | (u1 << x)
-        default:
+        case .off:
             value = buffer[y] & ~(u1 << x) & ~((u1 << (x+u8)))
         }
 
