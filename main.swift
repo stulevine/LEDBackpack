@@ -15,12 +15,6 @@ import Glibc
 
 typealias Point = (x: Int, y: Int)
 
-enum GridColor: Int {
-    case red = 1
-    case green = 2
-    case orange = 3
-}
-
 func randomGrid(led led8: LEDBackpack?) {
     var gridCount: Int = 0
     var grid = [[Bool]](repeating: [Bool](repeating: false, count: 8), count: 8)
@@ -61,16 +55,12 @@ func randomNumber(inRange range: CountableClosedRange<Int>) -> Int {
 }
 
 extension LEDBackpack {
-    func color(_ gridColor: GridColor) -> Int {
-        return gridColor.rawValue
-    }
-    
+
     func swap(xyPoint point: Point) -> Point {
         return (point.y, point.x)
     }
     
     func drawLine(p0: Point, p1: Point, color: GridColor) {
-        let iColor = self.color(color)
         let steep = abs(p1.y - p0.y) > abs(p1.x - p0.x)
         var lp0 = p0
         var lp1 = p1
@@ -106,10 +96,10 @@ extension LEDBackpack {
         
         for x in lp0.x...lp1.x {
             if steep {
-                self.setPixel(x: UInt16(y), y: x, color: iColor)
+                self.setPixel(x: UInt16(y), y: x, color: color)
             }
             else {
-                self.setPixel(x: UInt16(x), y: y, color: iColor)
+                self.setPixel(x: UInt16(x), y: y, color: color)
             }
             err -= dy
             if err < 0 {
@@ -133,10 +123,10 @@ let led8 = try? LEDBackpack()
 
 // orange pixel in each corner, cross of red and green
 led8?.clearDisplay()
-led8?.setPixel(x: 0, y: 0, color: 3)
-led8?.setPixel(x: 7, y: 0, color: 3)
-led8?.setPixel(x: 0, y: 7, color: 3)
-led8?.setPixel(x: 7, y: 7, color: 3)
+led8?.setPixel(x: 0, y: 0, color: .orange)
+led8?.setPixel(x: 7, y: 0, color: .orange)
+led8?.setPixel(x: 0, y: 7, color: .orange)
+led8?.setPixel(x: 7, y: 7, color: .orange)
 led8?.drawLine(p0: (x: 0, y: 3), p1: (x: 7, y: 3), color: .green)
 led8?.drawLine(p0: (x: 0, y: 4), p1: (x: 7, y: 4), color: .red)
 led8?.drawLine(p0: (x: 3, y: 0), p1: (x: 3, y: 7), color: .green)
