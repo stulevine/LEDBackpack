@@ -15,6 +15,16 @@ import Glibc
 
 typealias Point = (x: Int, y: Int)
 
+func randomColor(inRange range: CountableClosedRange<Int>) -> LEDBackpack.GridColor {
+    let color = randomNumber(inRange: range)
+    switch color {
+    case 1: return LEDBackpack.GridColor.red
+    case 2: return LEDBackpack.GridColor.green
+    case 3: return LEDBackpack.GridColor.orange
+    default: return LEDBackpack.GridColor.off
+    }
+}
+
 func randomGrid(led led8: LEDBackpack?) {
     var gridCount: Int = 0
     var grid = [[Bool]](repeating: [Bool](repeating: false, count: 8), count: 8)
@@ -23,7 +33,7 @@ func randomGrid(led led8: LEDBackpack?) {
     while gridCount < 64 {
         let x = randomNumber(inRange: 0...7)
         let y = randomNumber(inRange: 0...7)
-        let color = randomNumber(inRange: 1...3)
+        let color = randomColor(inRange: 1...3)
         guard grid[x][y] == false else { continue }
         
         led8?.setPixel(x: UInt16(x), y: y, color: color)
@@ -35,10 +45,10 @@ func randomGrid(led led8: LEDBackpack?) {
     while gridCount > 0 {
         let x = randomNumber(inRange: 0...7)
         let y = randomNumber(inRange: 0...7)
-        let color = 0
+ 
         guard grid[x][y] == true else { continue }
         
-        led8?.setPixel(x: UInt16(x), y: y, color: color)
+        led8?.setPixel(x: UInt16(x), y: y, color: .off)
         grid[x][y] = false
         gridCount -= 1
         Thread.sleep(forTimeInterval: 0.10)
