@@ -1,0 +1,27 @@
+diff --git a/sources/BigInt.swift b/sources/BigInt.swift
+index 4c1af5c..ef0b6ae 100644
+--- a/sources/BigInt.swift
++++ b/sources/BigInt.swift
+@@ -6,7 +6,7 @@
+ //  Copyright © 2016 Károly Lőrentey.
+  //
+
+-import SipHash
++//import SipHash
+
+ //MARK: BigInt
+
+diff --git a/sources/BigUInt Hashing.swift b/sources/BigUInt Hashing.swift
+index 666583b..aaf34fb 100644
+--- a/sources/BigUInt Hashing.swift
++++ b/sources/BigUInt Hashing.swift
+@@ -6,7 +6,7 @@
+ //  Copyright © 2016 Károly Lőrentey.
+  //
+
+-import SipHash
++//import SipHash
+
+ extension BigUInt: SipHashable {
+      //MARK: Hashing
+      
