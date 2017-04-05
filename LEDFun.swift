@@ -44,8 +44,7 @@ func randomGrid(led led8: LEDBackpack?) {
     // Clear randomly without replacement
     while gridCount > 0 {
         let x = randomNumber(inRange: 0...7)
-        let y = randomNumber(inRange: 0...7)
-
+        let y = randomNumber(inRange: 0...7) 
         guard grid[x][y] == true else { continue }
         
         led8?.setPixel(x: UInt16(x), y: y, color: .off)
@@ -70,7 +69,7 @@ extension LEDBackpack {
         return (point.y, point.x)
     }
     
-    func drawLine(p0: Point, p1: Point, color: LEDBackpack.GridColor) {
+    func drawLine(p0: Point, p1: Point, color: GridColor) {
         let steep = abs(p1.y - p0.y) > abs(p1.x - p0.x)
         var lp0 = p0
         var lp1 = p1
