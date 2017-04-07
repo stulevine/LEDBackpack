@@ -146,7 +146,8 @@ let sigHandler: Signals.SigActionHandler = { signal in
     led8?.clearDisplay()
     exit(0)
 }
-let digitsOfPi = 1000
+
+var digitsOfPi = 1000
 
 Signals.trap(signals: [(signal: .abrt, action: sigHandler),
                        (signal: .int, action: sigHandler),
@@ -193,8 +194,8 @@ let piGenerator = Coroutine<BigInt> { (yield) in
     var k: BigInt = 1
     var m: BigInt = 3
     var x: BigInt = 3
-    var numDigits = 100
-    while numDigits > 0 {
+
+    while digitsOfPi > 0 {
         if 4 * q + r - t < m * t {
             yield(m)
             let q0 = 10*q
@@ -203,7 +204,7 @@ let piGenerator = Coroutine<BigInt> { (yield) in
             q = q0
             r = r0
             m = m0
-            numDigits -= 1
+            digitsOfPi -= 1
         }
         else {
             let q0 = q*k
@@ -224,14 +225,15 @@ let piGenerator = Coroutine<BigInt> { (yield) in
 
 let piSequence = AnySequence { piGenerator }
 var firtDigit = true
-var strPi = ""
-for i in piSequence {
-    let s = String(describing: i)
-    strPi += s
-    //displayAndScroll(number: numbers[s]!, color: .orange)
-    display(number: numbers[s]!, color: .green)
-    Thread.sleep(forTimeInterval: 0.1)
-    led8?.clearDisplay()
-}
 
-print(strPi)
+for i in piSequence {
+    led8?.clearDisplay()
+    let s = String(describing: i)
+    print(s, terminator: "")
+    if fistDigit {
+        firstDigit = false
+        print(".", terminator: "")
+    }
+
+    display(number: numbers[s]!, color: .green)
+}
