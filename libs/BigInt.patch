@@ -1,27 +1,15 @@
 diff --git a/sources/BigInt.swift b/sources/BigInt.swift
-index 4c1af5c..ef0b6ae 100644
+index 4c1af5c..0cd3466 100644
 --- a/sources/BigInt.swift
 +++ b/sources/BigInt.swift
-@@ -6,7 +6,7 @@
+@@ -5,8 +5,8 @@
+ //  Created by Károly Lőrentey on 2015-12-27.
  //  Copyright © 2016 Károly Lőrentey.
-  //
-
+ //
+-
 -import SipHash
++// Comment out to build on Raspberry Pi
 +//import SipHash
-
+ 
  //MARK: BigInt
-
-diff --git a/sources/BigUInt Hashing.swift b/sources/BigUInt Hashing.swift
-index 666583b..aaf34fb 100644
---- a/sources/BigUInt Hashing.swift
-+++ b/sources/BigUInt Hashing.swift
-@@ -6,7 +6,7 @@
- //  Copyright © 2016 Károly Lőrentey.
-  //
-
--import SipHash
-+//import SipHash
-
- extension BigUInt: SipHashable {
-      //MARK: Hashing
-      
+ 

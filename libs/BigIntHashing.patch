@@ -1,0 +1,15 @@
+diff --git a/sources/BigUInt Hashing.swift b/sources/BigUInt Hashing.swift
+index 666583b..add48fc 100644
+--- a/sources/BigUInt Hashing.swift	
++++ b/sources/BigUInt Hashing.swift	
+@@ -5,8 +5,8 @@
+ //  Created by Károly Lőrentey on 2016-01-03.
+ //  Copyright © 2016 Károly Lőrentey.
+ //
+-
+-import SipHash
++// Comment out to build on Raspberry Pi
++//import SipHash
+ 
+ extension BigUInt: SipHashable {
+     //MARK: Hashing
