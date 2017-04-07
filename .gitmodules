@@ -1,0 +1,9 @@
+[submodule "libs/BigInt"]
+	path = libs/BigInt
+	url = git@github.com:lorentey/BigInt.git
+[submodule "libs/SipHash"]
+	path = libs/SipHash
+	url = https://github.com/lorentey/SipHash.git
+[submodule "libs/SMBus-swift"]
+	path = libs/SMBus-swift
+	url = git@github.com:Sephiroth87/SMBus-swift.git
