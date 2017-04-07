@@ -130,6 +130,18 @@ srandom(UInt32(time(nil)))
 
 let led8 = try? LEDBackpack()
 
+
+let sigHandler: Signals.SigActionHandler = { signal in
+    print("(\(signal)) Cleaning up...")
+    led8?.clearDisplay()
+    exit(0)
+}
+
+Signals.trap(signals: [(signal: .abrt, action: sigHandler),
+                       (signal: .int, action: sigHandler),
+                       (signal: .quit, action: sigHandler),
+                       (signal: .term, action: sigHandler)])
+
 // orange pixel in each corner, cross of red and green
 led8?.clearDisplay()
 led8?.setPixel(x: 0, y: 0, color: .orange)

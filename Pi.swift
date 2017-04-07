@@ -147,7 +147,7 @@ let sigHandler: Signals.SigActionHandler = { signal in
     exit(0)
 }
 
-var digitsOfPi = 1000
+var digitsOfPi = 1001
 
 Signals.trap(signals: [(signal: .abrt, action: sigHandler),
                        (signal: .int, action: sigHandler),
