@@ -224,13 +224,13 @@ let piGenerator = Coroutine<BigInt> { (yield) in
 }
 
 let piSequence = AnySequence { piGenerator }
-var firtDigit = true
+var firstDigit = true
 
 for i in piSequence {
     led8?.clearDisplay()
     let s = String(describing: i)
     print(s, terminator: "")
-    if fistDigit {
+    if firstDigit {
         firstDigit = false
         print(".", terminator: "")
     }

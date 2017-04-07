@@ -1,5 +1,3 @@
-diff --git a/sources/BigUInt Hashing.swift b/sources/BigUInt Hashing.swift
-index 666583b..add48fc 100644
 --- a/sources/BigUInt Hashing.swift	
 +++ b/sources/BigUInt Hashing.swift	
 @@ -5,8 +5,8 @@
